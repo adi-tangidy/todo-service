@@ -1,0 +1,26 @@
+version: '2.0'
+
+services:
+  mysql:
+    image: mysql:latest
+    ports:
+      - "3306:3306"
+    volumes: 
+      - mysql-db:/var/lib/mysql
+    restart: always
+    environment:
+      - MYSQL_USER=apps
+      - MYSQL_PASSWORD=password
+      - MYSQL_DATABASE=todo
+      - MYSQL_ROOT_HOST=%
+      - MYSQL_RANDOM_ROOT_PASSWORD=true
+  todo:
+    build: .
+    depends_on:
+      - mysql
+    ports:
+      - "8888:8888"
+    restart: always
+    
+volumes:
+  mysql-db:
