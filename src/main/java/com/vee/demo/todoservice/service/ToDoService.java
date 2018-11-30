@@ -21,4 +21,15 @@ public class ToDoService {
 	public ToDo addToDo(ToDo todo) {
 		return todoRepo.save(todo);
 	}
+	
+	public void removeToDo(Long id) {
+        todoRepo.deleteById(id);
+    }
+    
+    // TODO: duplicate with addToDo perhaps different functionality in the future ?
+    // if no.. remove it
+    public ToDo updateToDo(ToDo toDo) {
+        return todoRepo.save(toDo);
+    }
+
 }
